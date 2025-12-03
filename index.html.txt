@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KuchuPuchu Sorry Website</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ffd6e9, #ffeef7);
+    font-family: 'Comic Sans MS', cursive;
+    overflow: hidden;
+  }
+
+  .page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    display: none;
+  }
+
+  .active {
+    display: flex;
+  }
+
+  h1, h2, p {
+    color: #ff4f9a;
+    text-shadow: 1px 1px 2px white;
+  }
+
+  .btn {
+    background: #ff82b2;
+    padding: 12px 25px;
+    color: white;
+    border-radius: 25px;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+  }
+
+  .btn:hover {
+    background: #ff5ea6;
+  }
+
+  .no-btn:hover {
+    position: absolute;
+    left: calc(20% + (60% * var(--rand)));
+    top: calc(20% + (60% * var(--rand)));
+  }
+
+  .card-container {
+    display: flex;
+    gap: 20px;
+  }
+
+  .card {
+    width: 120px;
+    height: 160px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.5s;
+  }
+
+  .card.flipped {
+    transform: rotateY(180deg);
+    background: #ffe4f2;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <h1>Hey KuchuPuchu 💖</h1>
+  <h2>I am sorry</h2>
+  <p>I wanted to make something special for my baby (YOU) 💞</p>
+  <button class="btn" onclick="nextPage(2)">Click Here 💗</button>
+</div>
+
+<!-- PAGE 2 LOVE LETTER -->
+<div class="page" id="page2">
+  <h1>My Dearest KuchuPuchu 💌</h1>
+  <p>You are the cutest part of my life… my soft little love…
+  And I never want to hurt you even by mistake 😔💗
+  I love you more than words can ever say…</p>
+  <button class="btn" onclick="nextPage(3)">Next 💞</button>
+</div>
+
+<!-- PAGE 3 PLAYLIST -->
+<div class="page" id="page3">
+  <h1>Your Playlist 🎵💖</h1>
+  <button class="btn" onclick="playSong('song1')">Song 1</button>
+  <button class="btn" onclick="playSong('song2')">Song 2</button>
+  <button class="btn" onclick="nextPage(4)">Next 💗</button>
+</div>
+
+<!-- PAGE 4 CARDS -->
+<div class="page" id="page4">
+  <h1>3 Special Cards For You 💗</h1>
+  <div class="card-container">
+    <div class="card" onclick="flip(this)">💖</div>
+    <div class="card" onclick="flip(this)">🎀</div>
+    <div class="card" onclick="flip(this)">💗</div>
+  </div>
+  <button class="btn" onclick="nextPage(5)">Next 💕</button>
+</div>
+
+<!-- PAGE 5 BEAR ANIMATION (placeholder) -->
+<div class="page" id="page5">
+  <h1>🐻💋🐻</h1>
+  <p>Cute bear kisses everywhere! Muaaaah 💋💗</p>
+  <button class="btn" onclick="nextPage(6)">Next 💞</button>
+</div>
+
+<!-- PAGE 6 FORGIVE PAGE -->
+<div class="page" id="page6">
+  <h1>Manjao Jaanuuu… 🥺💖</h1>
+  <h2>Nahi ho aap meri toh fir kaun hogaaa? 😭💗</h2>
+
+  <button class="btn" onclick="nextPage(7)">YES 💗</button>
+  <button class="btn no-btn" id="noBtn">NO 😒</button>
+</div>
+
+<!-- PAGE 7 FINAL PAGE -->
+<div class="page" id="page7">
+  <h1>You Are Mine Forever 💗✨</h1>
+
+  <button class="btn" onclick="kiss()">Send Virtual Kiss 💋</button>
+  <button class="btn" onclick="restart()">Experience Again 💞</button>
+
+  <p id="kissText"></p>
+</div>
+
+<script>
+let current = 1;
+
+function nextPage(n) {
+  document.getElementById(`page${current}`).classList.remove('active');
+  document.getElementById(`page${n}`).classList.add('active');
+  current = n;
+}
+
+function flip(card) {
+  card.classList.toggle("flipped");
+  card.innerHTML = card.classList.contains("flipped") ? "I Love You 💗" : "💖";
+}
+
+function kiss() {
+  document.getElementById("kissText").innerHTML = "Muaaaaahhhh 💋💗 Love you babyyyyyy!";
+}
+
+function restart() {
+  nextPage(1);
+  alert("I love my baby soooo much 💗🥺");
+}
+
+// NO BUTTON RUNS AWAY
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", () => {
+  noBtn.style.setProperty('--rand', Math.random());
+});
+
+</script>
+</body>
+</html>
